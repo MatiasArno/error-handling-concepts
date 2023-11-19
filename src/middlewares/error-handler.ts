@@ -8,7 +8,6 @@ function errorHandlder(
 	_next: NextFunction
 ) {
 	if (error instanceof AppError) {
-		console.log("ERRORS -->", error);
 		return res.status(error.statusCode).json({ message: error.message });
 	}
 

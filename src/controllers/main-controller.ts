@@ -15,13 +15,12 @@ abstract class MainController {
 	}
 
 	static async login(req: Request, res: Response) {
-		const { username } = req.body;
-		const validatedUser = validateUser({ username }) as any;
+		const validatedUser = validateUser(req.body) as any;
 
 		if (validatedUser.error) {
 			const errorMessages = JSON.parse(validatedUser.error).map(
 				(err: any) => err.message
-			).join(' - ');
+			);
 
 			throw new AppError('Validation error', errorMessages, 400);
 		}
